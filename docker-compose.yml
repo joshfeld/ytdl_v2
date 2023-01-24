@@ -1,0 +1,10 @@
+version: "3"
+services:
+  ytdl:
+    build: .
+    ports: 
+      - 8000:5000
+    volumes:
+      - .:/code
+    environment:
+      FLASK_DEBUG: True
