@@ -18,12 +18,11 @@ class Convert:
 
     def dl_convert(self, yturl):
         # Grab video from youtube
-        # TODO Better error handling
         try:
             print("Now downloading")
             download = f"youtube-dl -o \"{self.dl_path}" + "%(title)s.%(ext)s\"" + " -f mp4 " + f"{yturl}"
             subprocess.call(download, shell=True)
-        except:
+        except Exception:
             self.err = True
             print('File could not be downloaded, make sure the YouTube link is correct')
 
@@ -34,11 +33,15 @@ class Convert:
         #         ytitle = ytitle.replace(badchar, "")
 
         # Convert video to mp3
-        file = max(glob.iglob(f"{self.dl_path}*.mp4"), key=os.path.getctime)
-        ytitle = file.split('/')[-1]
-        command = f"ffmpeg -i \"{self.dl_path}" + f"{ytitle}\"" f" -b:a {self.bit}" \
-            f" -vn \"{self.dl_path}" + f"{ytitle.split('.mp4')[0]}" + ".mp3\""
-        subprocess.call(command, shell=True)
+        try:
+            file = max(glob.iglob(f"{self.dl_path}*.mp4"), key=os.path.getctime)
+            ytitle = file.split('/')[-1]
+            command = f"ffmpeg -i \"{self.dl_path}" + f"{ytitle}\"" f" -b:a {self.bit}" \
+                f" -vn \"{self.dl_path}" + f"{ytitle.split('.mp4')[0]}" + ".mp3\""
+            subprocess.call(command, shell=True)
+        except Exception:
+            self.err = True
+            print('Error in ffmpeg conversion')
 
         # Delete video if not requested
         if self.vid == 0:
