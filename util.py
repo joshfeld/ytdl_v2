@@ -12,15 +12,15 @@ def zip_files():
 
     if len(file_paths) > 1:
         memory_file = io.BytesIO()
-        with zipfile.ZipFile(memory_file, 'w') as zf:
+        with zipfile.ZipFile(memory_file, "w") as zf:
             for file in file_paths:
                 zf.write(file, os.path.basename(file))
         memory_file.seek(0)
-        name = 'downloads.zip'
-        mime = 'application/zip'
+        name = "downloads.zip"
+        mime = "application/zip"
         return memory_file, name, mime
     else:
         file = file_paths[0]
         name = os.path.basename(file_paths[0])
-        mime = 'audio/mpeg'
+        mime = "audio/mpeg"
         return file, name, mime

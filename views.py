@@ -5,30 +5,32 @@ from .forms import URLForm, DLForm
 from .download import Convert
 
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route("/", methods=["GET", "POST"])
 def index():
     form = URLForm()
     dl_form = DLForm()
     if dl_form.validate_on_submit():
         file, name, mime = util.zip_files()
-        return send_file(file, attachment_filename=name, as_attachment=True, mimetype=mime)
-    return render_template('index.html', form=form, dl_form=dl_form)
+        return send_file(
+            file, attachment_filename=name, as_attachment=True, mimetype=mime
+        )
+    return render_template("index.html", form=form, dl_form=dl_form)
 
 
-@app.route('/convert', methods=['GET', 'POST'])
+@app.route("/convert", methods=["GET", "POST"])
 def convert():
     form = URLForm()
     dl_form = DLForm()
-    if request.method == 'POST':
+    if request.method == "POST":
         if form.validate_on_submit():
             links = form.urls.data.splitlines()
             ytget = Convert(form.vid.data, form.bit.data)
             ytget.clear_files()
             for yturl in links:
                 ytget.dl_convert(yturl)
-    return render_template('index.html', form=form, dl_form=dl_form)
+    return render_template("index.html", form=form, dl_form=dl_form)
 
 
-@app.route('/pdf')
+@app.route("/pdf")
 def pdf():
-    return render_template('pdfcombine.html')
+    return render_template("pdfcombine.html")
