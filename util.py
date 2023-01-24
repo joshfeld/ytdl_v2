@@ -5,7 +5,7 @@ import io
 
 def zip_files():
     file_paths = []
-    for root, directories, files in os.walk(r"D:\Programming\ytdl_v2\files" + "\\"):
+    for root, directories, files in os.walk(r"/files/"):
         for filename in files:
             fp = os.path.join(root, filename)
             file_paths.append(fp)

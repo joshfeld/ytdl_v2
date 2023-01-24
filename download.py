@@ -35,7 +35,7 @@ class Convert:
 
         # Convert video to mp3
         file = max(glob.iglob(f"{self.dl_path}*.mp4"), key=os.path.getctime)
-        ytitle = file.split('\\')[-1]
+        ytitle = file.split('/')[-1]
         command = f"ffmpeg -i \"{self.dl_path}" + f"{ytitle}\"" f" -b:a {self.bit}" \
             f" -vn \"{self.dl_path}" + f"{ytitle.split('.mp4')[0]}" + ".mp3\""
         subprocess.call(command, shell=True)
@@ -51,4 +51,5 @@ class Convert:
 
     @property
     def dl_path(self):
-        return r"D:\Programming\ytdl_v2\files" + "\\"
+        # return r"D:\Programming\ytdl_v2\files" + "\\"
+        return r"/files/"
