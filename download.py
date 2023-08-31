@@ -21,7 +21,7 @@ class Convert:
         try:
             print("Now downloading")
             download = (
-                f'youtube-dl -o "{self.dl_path}'
+                f'yt-dlp -o "{self.dl_path}'
                 + '%(title)s.%(ext)s"'
                 + " -f mp4 "
                 + f"{yturl}"

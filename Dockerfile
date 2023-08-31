@@ -6,7 +6,7 @@ ENV FLASK_RUN_HOST=0.0.0.0
 RUN apt-get update && apt-get install ffmpeg -y
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
-RUN pip install youtube-dl
+RUN pip install yt-dlp
 EXPOSE 5000
 COPY . .
 CMD ["flask", "run"]

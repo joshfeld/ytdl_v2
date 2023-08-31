@@ -9,3 +9,4 @@ services:
       - /mnt/f/Programming/Files:/files
     environment:
       FLASK_DEBUG: True
+    restart: unless-stopped
