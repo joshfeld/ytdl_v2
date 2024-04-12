@@ -6,7 +6,7 @@ dominate==2.4.0
 Flask
 Flask-Bootstrap
 Flask-WTF
-idna==2.8
+idna==3.7
 imageio==2.5.0
 imageio-ffmpeg==0.3.0
 itsdangerous==1.1.0
